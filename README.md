@@ -25,7 +25,7 @@ Api.routes
 Pets.routes 
 
 | HTTP Method | URI path               |         Description                 | JSON |
-|-------------|----------------------- |------------------------------------ |      |
+|-------------|----------------------- |------------------------------------ | ----------     |
 | GET         | `/ `                   | Index page                          |      |       
 | GET         | `/pets/:id/edit`       | Pets edit form render               |      |
 | POST        | `/pets/:id/edit`       | Pets edit form handler              |      |
@@ -35,13 +35,13 @@ Pets.routes
 
 Comments.routes
 | HTTP Method | URI path               |         Description                         | JSON |
-|-------------|----------------------- |-------------------------------------------- |      |
+|-------------|----------------------- |-------------------------------------------- |  ------    |
 | POST        | `/comments/create`     | Route to create comments on shelter profiles|      |
 | POST        | `/comments/:id/delete` | comments delete                             |      |
 
 Events.routes 
  HTTP Method | URI path               |         Description                       | JSON |
-|-------------|-----------------------|------------------------------------------ |      |
+|-------------|-----------------------|------------------------------------------ | ---------     |
 | POST        | `/events/create`      | Route to create events on shelter profiles|      |
 | POST        | `/events/:id/delete`  | events delete                             |      |
 
