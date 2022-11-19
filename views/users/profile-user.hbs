@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <hr>
+    <div class="row">
+        <h1>My profile</h1>
+        <br>
+        <div class="col-md-4 mb-3 ">
+            <div>
+                <img src={{user.profileImg}} class="card-img-top mt-5">
+                <div>
+                    <h5 class="card-title mt-5">User name : {{user.username}} </h5>
+                    <h5 class="card-title mt-2">Description: {{user.description}} </h5>
+                    {{#if isAdmin}}
+                    <h5 class="card-title mt-2">Rol: {{user.role}} </h5>
+                    {{/if}}
+                    <h5 class="card-title mt-2">Address: {{user.address}} </h5>
+                    <h5 class="card-title mt-2">Cell phone: {{user.phone}} </h5>
+
+
+
+                    {{#if isAdmin}}
+                    <a href='/user/{{user._id}}/edit' class="btn btn-dark">edit profile</a>
+                    <form action="/user/{{user._id}}/delete" method="POST" style="display: inline">
+                        <input type="submit" value="delete profile" class="btn btn-danger">
+                    </form>
+                    {{/if}}
+
+                    {{#if isOwner}}
+                    <a href="/user/{{user._id}}/edit" class="btn btn-warning">edit profile</a>
+                    {{/if}}
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <a href="/" class="btn btn-dark">Inicio</a>
+    </div>

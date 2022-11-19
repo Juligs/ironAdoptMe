@@ -17,10 +17,10 @@ Api.routes
 
 | HTTP Method | URI path               |         Description                    | JSON |
 |-------------|----------------------- |----------------------------------------|------|
-| GET         | `/api/pets `           | List pets of a shelter                 |      |       
-| GET         | `/api/users`           | List users base on result from filters |      |
-| GET         | `/api/comments`        | List comments of shelters              |      |
-| POST        | `/api/events`          | List events created by shelters        |      |
+| GET         | `/api/pets `           | List pets of a shelter                 |    ✅  |       
+| GET         | `/api/users`           | List users base on result from filters |  ✅    |
+| GET         | `/api/comments`        | List comments of shelters              |  ✅    |
+| POST        | `/api/events`          | List events created by shelters        | ✅     |
 
 Pets.routes 
 

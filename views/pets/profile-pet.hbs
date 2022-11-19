@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <hr>
+    <div class="row">
+        <h1>My profile</h1>
+        <br>
+        <div class="col-md-4 mb-3 ">
+            <div>
+                <img src={{pet.profileImg}} class="card-img-top mt-5">
+                <div>
+                    <h5 class="card-title mt-5">Name : {{pet.name}} </h5>
+                    <h5 class="card-title mt-2">Age: {{pet.age}} </h5>
+                    <h5 class="card-title mt-2">Size: {{pet.size}} </h5>
+                    <h5 class="card-title mt-2">Breed: {{pet.breed}} </h5>
+                    <h5 class="card-title mt-2">Description: {{pet.description}} </h5>
+                    <h5 class="card-title mt-2">Status: {{pet.status}} </h5>
+
+
+
+                    {{#if isAdmin}}
+                    <a href='/pets/{{user._id}}/edit' class="btn btn-dark">edit profile</a>
+                    <form action="/pets/{{user._id}}/delete" method="POST" style="display: inline">
+                        <input type="submit" value="delete profile" class="btn btn-danger">
+                    </form>
+                    {{/if}}
+
+                    {{#if isShelter}}
+                    <a href="/pets/{{user._id}}/edit" class="btn btn-warning">edit profile</a>
+                    {{/if}}
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <a href="/" class="btn btn-dark">Inicio</a>
+    </div>

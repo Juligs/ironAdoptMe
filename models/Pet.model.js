@@ -24,7 +24,7 @@ const petSchema = new Schema(
         },
         description: { type: String, default: 'no description.' },
 
-        profileImg: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
+        petImage: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
     },
     {
         timestamps: true

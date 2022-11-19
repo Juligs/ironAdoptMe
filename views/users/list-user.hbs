@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <hr>
+    <div class="row">
+        <h2>Shelters</h2>
+        <br>
+        {{#each user}}
+        <div class="col-md-4 mb-3 ">
+            <div>
+                <img src={{user.profileImg}} class="card-img-top mt-5">
+                <h5 class="card-title mt-2">{{username}} </h5>
+
+                <a href="/user/{{id}}/profile" class="btn btn-warning">More information</a>
+
+            </div>
+        </div>
+
+
+        {{/each}}
+
+        </row>
+        <a href="/" class="btn btn-dark mt-2">Home</a>
+    </div>

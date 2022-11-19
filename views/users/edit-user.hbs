@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <form action='/user/{{user._id}}/edit' method="POST">
+                <div class="mb-3 mt-5">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{user.username}}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="profileImg" class="form-label">Profile picture:</label>
+                    <input type="text" class="form-control" id="profileImg" name="profileImg"
+                        value="{{user.profileImg}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descripcion:</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        value="{{user.description}}">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Cellphone:</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{user.phone}}">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Adress:</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{user.address}}">
+                </div>
+                {{#if isAdmin }}
+                <select name="role" class="form-select" id="role">
+                    <option disabled selected> Select rol</option>
+                    <option value="USER"> USER</option>
+                    <option value="SHELTER"> SHELTER</option>
+                </select>
+                {{/if}}
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-dark">edit</button>
+                </div>
+
+
+            </form>
+
+
+            <a href="/user/list" class="btn btn-dark mt-2">Back to list</a>
+
+            <hr>
+        </div>
+    </div>
+    <a href="/" class="btn btn-dark">Back to home</a>
+</div>
