@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
@@ -19,10 +19,24 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    address: {
+      type: String,
+      required: true
+    },
+    role: {
+      type: String,
+      enum: ['USER', 'SHELTER', 'ADMIN'],
+      default: 'USER'
+    },
+
+    profileImg: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
+
+    pets: [{ type: mongoose.Schema.Types.ObjectId, ref: "Pet" }],
+
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }]
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
 );
