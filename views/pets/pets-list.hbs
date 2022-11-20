@@ -3,22 +3,23 @@
     <div class="row">
         <h2>Our pets</h2>
         <br>
-        {{#each pet}}
-        <div class="col-md-4 mb-3 ">
-            <div>
-                <img src={{petImage}} class="card-img-top mt-5">
-                <h5 class="card-title mt-2"> Name: {{name}} </h5>
-                <h5 class="card-title mt-2"> Status: {{status}} </h5>
+        {{#each pets}}
 
 
-                <a href="/pets/{{id}}/profile" class="btn btn-warning">More information</a>
-
+        <div class="card" style="width: 18rem;">
+            <img src="{{petImage}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
             </div>
+            <ul class="list-group list-group-flush">
+                <h5>{{status}}</h5>
+                <div class="card-body">
+                    <a href="/pets/{{id}}/profile" class="btn btn-dark">More information</a>
+                </div>
+
         </div>
-
-
         {{/each}}
-
-        </row>
+        {{#if isShelter}}
+        <a href="/pets/create" class="btn btn-dark">Add new pet</a>
+        {{/if}}
         <a href="/" class="btn btn-dark mt-2">Home</a>
-    </div>

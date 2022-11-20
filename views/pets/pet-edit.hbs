@@ -1,0 +1,51 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <form action='/pets/{{pet._id}}/edit' method="POST">
+                <div class="mb-3 mt-5">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{pet.name}}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="petImage" class="form-label">Pet picture:</label>
+                    <input type="text" class="form-control" id="petImage" name="petImage" value="{{pet.petImage}}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="size" class="form-label">Age:</label>
+                    <input type="text" class="form-control" id="size" name="age" value="{{pet.age}}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="breed" class="form-label">breed:</label>
+                    <input type="text" class="form-control" id="breed" name="breed" value="{{pet.breed}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        value="{{pet.description}}">
+                </div>
+
+
+                <select name="status class=" form-select" id="status>
+                    <option disabled selected> Select status</option>
+                    <option value=" IN ADDPTION"> In adoption</option>
+                    <option value="RESERVED"> Reserved</option>
+                    <option value="ADOPTED"> Adopted</option>
+                </select>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-dark">edit</button>
+                </div>
+
+
+            </form>
+
+
+            <a href="/user/list" class="btn btn-dark mt-2">Back to list</a>
+
+            <hr>
+        </div>
+    </div>
+    <a href="/" class="btn btn-dark">Back to home</a>
+</div>

@@ -6,7 +6,6 @@ const petSchema = new Schema(
             type: String,
             trim: true,
             required: false,
-            unique: true
         },
         age: {
             type: Number
@@ -19,12 +18,15 @@ const petSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ["EN ADOPCIÓN", "RESERVADO", "ADOPTADO"],
-            default: "EN ADOPCIÓN"
+            enum: ["IN ADOPTION", "RESERVED", "ADOPTED"],
+            default: "IN ADOPTION"
         },
         description: { type: String, default: 'no description.' },
 
+        shelterBy: { type: Schema.Types.ObjectId, ref: "User" },
+
         petImage: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
+
     },
     {
         timestamps: true

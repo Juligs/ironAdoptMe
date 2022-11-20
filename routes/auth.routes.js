@@ -5,8 +5,8 @@ const saltRounds = 10
 const { isLoggedOut } = require("../middleware/route-guard")
 const app = require("../app")
 
-router.get('/registro', isLoggedOut, (req, res, next) => res.render('auth/signup'))
-router.post('/registro', isLoggedOut, (req, res, next) => {
+router.get('/signup', (req, res, next) => res.render('auth/signup'))
+router.post('/signup', (req, res, next) => {
 
     const { password } = req.body
 
@@ -18,9 +18,9 @@ router.post('/registro', isLoggedOut, (req, res, next) => {
         .catch(error => next(error))
 })
 
-router.get('/login', isLoggedOut, (req, res, next) => res.render('auth/login'))
+router.get('/login', (req, res, next) => res.render('auth/login'))
 
-router.post('/login', isLoggedOut, (req, res, next) => {
+router.post('/login', (req, res, next) => {
 
     const { email, password } = req.body
 
@@ -35,6 +35,13 @@ router.post('/login', isLoggedOut, (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
+                if (req.session.currentUser.role === "USER") {
+                    req.app.locals.isUser = true
+                } else if (req.session.currentUser.role === "SHELTER") {
+                    req.app.locals.isShelter = true
+                } else {
+                    req.app.locals.isAdmin = true
+                }
                 res.redirect('/')
             }
         })
@@ -42,7 +49,10 @@ router.post('/login', isLoggedOut, (req, res, next) => {
 })
 
 router.post('/logout', (req, res, next) => {
-    req.session.destroy(() => res.redirect('/iniciar-sesion'))
+    req.app.locals.isShelter = false
+    req.app.locals.isUser = false
+    req.app.locals.isAdmin = false
+    req.session.destroy(() => res.redirect('/login'))
 })
 
 module.exports = router

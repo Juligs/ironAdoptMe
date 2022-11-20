@@ -6,18 +6,29 @@ const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 router.get("/list", isLoggedIn, (req, res) => {
 
     if (req.session.currentUser.role === "USER") {
+        req.app.locals.isUser = true
         User
             .find({ role: "SHELTER" })
-            .then(shelters => res.render("users/list-user", { shelters }))
+            .then(users => res.render("users/list-user", { users }))
+            .catch(err => console.log(err))
+    } else if (req.session.currentUser.role === "SHELTER") {
+        req.app.locals.isShelter = true
+        User
+            .find()
+            .then(users => {
+                res.render('users/list-user', { users })
+            })
+            .catch(err => console.log(err))
+    } else {
+        req.app.locals.isAdmin = true
+        User
+            .find()
+            .then(users => {
+                res.render('users/list-user', { users })
+            })
             .catch(err => console.log(err))
     }
 
-    User
-        .find()
-        .then(user => {
-            res.render('users/list-user', { user })
-        })
-        .catch(err => console.log(err))
 })
 
 router.get('/:user_id/profile', (req, res) => {

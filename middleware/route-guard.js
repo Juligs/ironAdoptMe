@@ -16,7 +16,7 @@ const checkRoles = (...rolesToCheck) => (req, res, next) => {
     if (rolesToCheck.includes(req.session.currentUser.role)) {
         next()
     } else {
-        res.render('auth/login', { errorMessage: `No tienes permisos de ${roleToCheck}` })
+        res.render('auth/login', { errorMessage: `No tienes permisos de ${rolesToCheck}` })
     }
 }
 

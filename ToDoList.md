@@ -6,6 +6,6 @@
 ✅ Inicio de sesión y registro de usuarios funcionales
 
 ➡️ Barra de navegación dinámica según tipo de usuario al iniciar sesión
-➡️ 
+➡️ Pantalla de Inicio -> Video del perro | Lista de perros -> Cartas Bootrstrap | Usuarios -> Tabla avanzada Bootstrap
 ➡️ 
 ➡️ Menú de filtrado
