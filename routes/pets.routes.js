@@ -13,9 +13,9 @@ router.get("/list", isLoggedIn, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.get("/create", isLoggedIn, checkRoles("SHELTER"), (req, res, next) => res.render("pets/pet-create"))
+router.get("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => res.render("pets/pet-create"))
 
-router.post("/create", isLoggedIn, checkRoles("SHELTER"), fileUploader.single("petImg"), async (req, res, next) => {
+router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("petImg"), async (req, res, next) => {
 
     const { name, age, breed, description } = req.body
 
@@ -65,7 +65,7 @@ router.post("/:idPet/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, re
 
 })
 
-router.post("/:idPet/delete", (req, res, next) => {
+router.post("/:idPet/delete", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
 
     const { idPet } = req.params
 
