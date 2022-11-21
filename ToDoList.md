@@ -7,5 +7,5 @@
 
 ➡️ Barra de navegación dinámica según tipo de usuario al iniciar sesión
 ➡️ Pantalla de Inicio -> Video del perro | Lista de perros -> Cartas Bootrstrap | Usuarios -> Tabla avanzada Bootstrap
-➡️ 
+➡️ Api propia - Importar API Google Maps
 ➡️ Menú de filtrado

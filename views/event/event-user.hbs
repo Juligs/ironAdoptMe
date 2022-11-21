@@ -29,27 +29,28 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each foundEvents}}
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="{{pet.image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle" />
+                            <img src="{{image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1">{{event.title}}</p>
+                                <p class="fw-bold mb-1">{{title}}</p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">{{event.description}}</p>
+                        <p class="fw-normal mb-1">{{description}}</p>
                     </td>
                     <td>
                         <span class="badge badge-success rounded-pill d-inline">Active</span>
                     </td>
-                    <td>{{pet.address}}</td>
+                    <td>{{address}}</td>
                     <td>
-                        <p class="fw-normal mb-1">{{event.date}}</p>
+                        <p class="fw-normal mb-1">{{date}}</p>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1">{{event.shelter}}</p>
+                        <p class="fw-normal mb-1">{{shelter}}</p>
                     </td>
                     <td>
                         <div class="form-check">
@@ -71,6 +72,7 @@
                         {{/if}}
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </form>
