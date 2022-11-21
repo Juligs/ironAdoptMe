@@ -12,12 +12,12 @@ const eventSchema = new Schema(
             required: false,
             unique: true
         },
-        descripcion: {
+        description: {
             type: String,
             required: true
         },
         date: {
-            type: String
+            type: Date
         },
         address: {
             type: String
