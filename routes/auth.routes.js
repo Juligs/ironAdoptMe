@@ -5,6 +5,8 @@ const saltRounds = 10
 const { isLoggedOut } = require("../middleware/route-guard")
 const app = require("../app")
 
+
+
 router.get('/signup', (req, res, next) => res.render('auth/signup'))
 router.post('/signup', (req, res, next) => {
 
@@ -14,7 +16,7 @@ router.post('/signup', (req, res, next) => {
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
         .then(hashedPassword => User.create({ ...req.body, password: hashedPassword }))
-        .then(createdUser => res.redirect('/'))
+        .then(createdUser => res.redirect('/login'))
         .catch(error => next(error))
 })
 
@@ -42,7 +44,7 @@ router.post('/login', (req, res, next) => {
                 } else {
                     req.app.locals.isAdmin = true
                 }
-                res.redirect('/')
+                res.redirect('/pets/list')
             }
         })
         .catch(error => next(error))

@@ -8,10 +8,34 @@
     top: 0;
     bottom: 0;
     z-index: -1;
+    opacity: .90;
 }
 
 #myMap {
     height: 350px;
     border-bottom: 2px;
 
+} 
+
+#cardIndex{
+    background-color: transparent;
+    border-color: rgb(44, 41, 41);
+    box-shadow: 40px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 100%;
+
+    
+    
+
 }
+body {
+    background-color: #d9e2eb;
+}
+#navbar{
+    background-color: #856d7a;
+    color:white;
+    font-weight: bold;
+}
+
