@@ -3,17 +3,14 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const commentSchema = new Schema(
     {
-        username: {
-            type: String,
-            trim: true,
-            required: false,
-            unique: true
+        owner: {
+            type: Schema.Types.ObjectId, ref: "User"
         },
-        comment: {
+        text: {
             type: String,
             required: true
         },
-        commentImage: {
+        image: {
             type: String,
             set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v
         },

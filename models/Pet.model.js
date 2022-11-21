@@ -25,7 +25,7 @@ const petSchema = new Schema(
 
         shelterBy: { type: Schema.Types.ObjectId, ref: "User" },
 
-        petImage: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
+        image: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
 
     },
     {

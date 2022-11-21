@@ -9,3 +9,9 @@
     bottom: 0;
     z-index: -1;
 }
+
+#myMap {
+    height: 350px;
+    border-bottom: 2px;
+
+}

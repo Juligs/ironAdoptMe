@@ -65,13 +65,13 @@ router.get('/:user_id/edit', (req, res) => {
 })
 
 router.post('/:user_id/edit', (req, res) => {
-    const { username, profileImg, role, phone, address } = req.body
+    const { username, image, role, phone, address } = req.body
     console.log(req.body)
 
     const { user_id } = req.params
 
     User
-        .findByIdAndUpdate(user_id, { username, profileImg, role, phone, address })
+        .findByIdAndUpdate(user_id, { username, image, role, phone, address })
         .then(() => res.redirect(`/user/profile/${user_id}`))
         .catch(err => console.log(err))
 })

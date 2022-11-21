@@ -3,6 +3,9 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const eventSchema = new Schema(
     {
+        owner: {
+            type: Schema.Types.ObjectId, ref: "User"
+        },
         title: {
             type: String,
             trim: true,
@@ -19,16 +22,16 @@ const eventSchema = new Schema(
         address: {
             type: String
         },
-        eventImage: {
+        image: {
             type: String,
-            set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v
+            set: v => v || "https://i.stack.imgur.com/l60Hf.png"
         }
     },
     {
         timestamps: true
     }
 );
-
+eventSchema.index({ location: '2dsphere' })
 const Event = model("Event", eventSchema);
 
 module.exports = Event;

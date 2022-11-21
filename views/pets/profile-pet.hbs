@@ -3,7 +3,7 @@
         <div class="card col-8 h-100">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{pet.petImage}}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{pet.image}}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -15,7 +15,7 @@
                         <h6 class="card-title"> Status: {{pet.status}}</h6>
 
                         <a href='/pets/{{pet._id}}/edit' class="btn btn-dark">edit profile</a>
-                        <form action="/pets/{{pet._id}}/delete" method="POST" style="display: inline">
+                        <form action="/pets/{{pet.id}}/delete" method="POST" style="display: inline">
                             <input type="submit" value="delete profile" class="btn btn-danger">
                         </form>
 

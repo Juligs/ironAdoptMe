@@ -37,7 +37,7 @@ const userSchema = new Schema(
       default: 'USER'
     },
 
-    profileImg: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
+    image: { type: String, set: v => v === "" ? "https://i.stack.imgur.com/l60Hf.png" : v },
 
     pets: [{ type: mongoose.Schema.Types.ObjectId, ref: "Pet" }],
 

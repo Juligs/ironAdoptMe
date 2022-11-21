@@ -1,0 +1,77 @@
+<div class="container mt-5 ">
+    <div class="row">
+        <h1>Maps</h1>
+        <hr>
+        <div class="col6 align-items-end">
+            <figure id="myMap"></figure>
+            <script src="/js/map.js"></script>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&callback=init"></script>
+        </div>
+    </div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Event Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Addres</th>
+                <th>Shelter</th>
+                <th>Event attendance </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://cdn.memegenerator.es/imagenes/memes/full/0/29/294682.jpg" alt=""
+                            style="width: 70 px; height: 70px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">Happy Hour</p>
+                            <p class="text-muted mb-0">Pethappy@gmail.com</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">Adoption Day!</p>
+                    <p class="text-muted mb-0">Take a dog :D</p>
+                </td>
+                <td>
+                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                </td>
+                <td>Senior</td>
+                <td>
+                    <a href="/" class="btn btn-dark">Edit</a>
+                    <a href="/event/create" class="btn btn-dark">Create event</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
+                            style="width: 45px; height: 45px" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">Kate Hunington</p>
+                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">Designer</p>
+                    <p class="text-muted mb-0">UI/UX</p>
+                </td>
+                <td>
+                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                </td>
+                <td>Senior</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
