@@ -7,7 +7,10 @@ const { create } = require("hbs");
 router.get("/map", (req, res, next) => {
     Event
         .find()
-        .then(foundEvents => res.render("event/event-user", { foundEvents }))
+        .then(foundEvents => {
+            console.log(foundEvents[0].date)
+            res.render("event/event-user", { foundEvents })
+        })
         .catch(err => console.log(err))
 
 
@@ -18,6 +21,7 @@ router.get('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, nex
 })
 router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("image"), (req, res, next) => {
     const { title, description, date, address } = req.body
+
     Event
         .create({ title, description, date, address, image: req.file.path })
         .then(() => res.redirect('/event/map'))

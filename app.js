@@ -18,6 +18,15 @@ require('./config/session.config')(app)
 
 hbs.registerPartials(__dirname + "/views/partials")
 
+app.use((req, res, next) => {
+    if (req.session.currentUser) {
+        app.locals.userName = req.session.currentUser.username
+    } else {
+        app.locals.userName = null
+    }
+    next()
+})
+
 // Routes
 require("./routes")(app)
 

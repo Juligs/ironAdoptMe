@@ -20,12 +20,15 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               {{#unless userName}}
                <li class="nav-item">
                   <a class="nav-link" href="/login">Iniciar sesión</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="/signup">Registrarme</a>
                </li>
+               {{/unless}}
+               {{#if userName}}
                <li class="nav-item">
                   <a class="nav-link" href="/user/list">Shelter List</a>
                </li>
@@ -40,10 +43,10 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false">Events</a>
                   <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="/mi-perfil">Add events</a></li>
+                     <li><a class="dropdown-item" href="/event/create">Add events</a></li>
                      <li><a class="dropdown-item" href="/event/map">Proximos eventos</a></li>
                </li>
-
+               {{/if}}
          </div>
       </div>
    </nav>
