@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <form action='/event/{{event._id}}/edit' method="POST" enctype="multipart/form-data">
+                <div class="mb-3 mt-5">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="name" name="title" value="{{event.title}}">
+                </div>
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="imageInput" name="image">
+                    <input type="hidden" name="existingImage" value="{{event.image}}">
+                    <div class="form-text">Add image of the event </div>
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="description" class="form-label">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        value="{{event.description}}">
+                </div>
+                <div class="mb-3 mt-5">
+                    <label for="date" class="form-label">Date:</label>
+                    <input type="date" class="form-control" id="date" name="date" value="{{event.date}}">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{event.address}}">
+                </div>
+
+
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-dark">edit</button>
+                </div>
+
+
+            </form
