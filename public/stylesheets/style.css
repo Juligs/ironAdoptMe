@@ -31,7 +31,9 @@
 
 }
 body {
-    background-color: #d9e2eb;
+     background-image: url("../images/descarga.jpeg");
+     background-repeat: no-repeat;
+     background-size: cover;
 }
 #navbar{
     background-color: #856d7a;
