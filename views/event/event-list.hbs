@@ -62,29 +62,18 @@
                     <p class="fw-normal mb-1">{{description}}</p>
                 </td>
                 <td>
-                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                    <span>{{address}}</span>
                 </td>
-                <td>{{address}}</td>
                 <td>
                     <p class="fw-normal mb-1">{{date}}</p>
                 </td>
                 <td>
-                    <p class="fw-normal mb-1">{{shelter}}</p>
-                </td>
-                <td>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Default radio
-                        </label>
-                    </div>
+                    <p class="fw-normal mb-1">{{owner.username}}</p>
                 </td>
                 <td>
 
-                    <a href='/event/{{_id}}/edit' class="btn btn-dark">Edit </a>
-                    <form action="/event/{{_id}}/delete" method="POST" style="display: inline">
-                        <button type="submit" value="delete event" class="btn btn-danger">Eliminar evento</button>
-                    </form>
+                </td>
+                <td>
 
                 </td>
             </tr>

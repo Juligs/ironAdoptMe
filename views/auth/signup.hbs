@@ -7,7 +7,7 @@
             <h1>Registro</h1>
             <hr>
 
-            <form action="/signup" method="POST">
+            <form action="/signup" method="POST" enctype="multipart/form-data">
 
                 <div class="mb-3 row">
                     <div class="col">
@@ -35,8 +35,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="imageInput" class="form-label">Image</label>
-                    <input type="url" class="form-control" id="imageInput" name="profileImg">
-                    <div class="form-text">Enter the URL to the profile image you want.</div>
+                    <input type="file" class="form-control" id="imageInput" name="image">
+                    <div class="form-text">Upload the profile image you want.</div>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-dark block">Sing up</button>
@@ -53,3 +53,6 @@
     </div>
 
 </div>
+<script src="./js/autocomplete.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>
