@@ -4,11 +4,32 @@
         <hr>
         <div class="col6 align-items-end">
             <figure id="myMap"></figure>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script src="/js/map.js"></script>
             <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&callback=init"></script>
         </div>
     </div>
+    <div class="buscador">
+        <h2>Ingrese una dirección</h2>
+        <input type="text" id="direccion">
+        <div id="buscar">Buscar</div>
+    </div>
+
+    <div id="mapa-geocoder" class="mapa" style="width:100%;display:block;position:absolute;background:#f2777a;"></div>
+
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).on("load resize", function () {
+                var alturaBuscador = $(".buscador").outerHeight(true),
+                    alturaVentana = $(window).height(),
+                    alturaMapa = alturaVentana - alturaBuscador;
+
+                $("#mapa-geocoder").css("height", alturaMapa + "px");
+            });
+        });
+    </script>
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
             <tr>

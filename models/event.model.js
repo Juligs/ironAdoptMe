@@ -20,8 +20,11 @@ const eventSchema = new Schema(
             type: Date,
             get: value => value.toDateString(),
         },
-        address: {
-            type: String
+        location: {
+            type: {
+                type: String
+            },
+            coordinates: [Number]
         },
         image: {
             type: String,
