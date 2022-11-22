@@ -15,11 +15,11 @@ router.get("/list", isLoggedIn, (req, res, next) => {
 
 router.get("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => res.render("pets/pet-create"))
 
-router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("petImg"), async (req, res, next) => {
+router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("petImg"), (req, res, next) => {
 
     const { name, age, breed, description } = req.body
 
-    Pet.create({ name, age, breed, description, image: req.file.path })
+    Pet.create({ name, age, breed, description, image: req.file.path, shelterBy: req.session.currentUser._id })
         .then(createdPet => User.findByIdAndUpdate(req.session.currentUser._id, { $push: { pets: createdPet._id } }))
         .then(res.redirect("/pets/list"))
         .catch(err => console.log(err))

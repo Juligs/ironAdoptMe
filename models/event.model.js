@@ -17,7 +17,8 @@ const eventSchema = new Schema(
             required: true
         },
         date: {
-            type: Date
+            type: Date,
+            get: value => value.toDateString(),
         },
         address: {
             type: String
@@ -25,6 +26,9 @@ const eventSchema = new Schema(
         image: {
             type: String,
             set: v => v || "https://i.stack.imgur.com/l60Hf.png"
+        },
+        participants: {
+            type: Schema.Types.ObjectId, ref: "User"
         }
     },
     {
