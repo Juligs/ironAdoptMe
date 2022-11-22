@@ -3,9 +3,9 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const eventSchema = new Schema(
     {
-        owner: {
+        owner: [{
             type: Schema.Types.ObjectId, ref: "User"
-        },
+        }],
         title: {
             type: String,
             trim: true,
@@ -29,6 +29,12 @@ const eventSchema = new Schema(
         },
         participants: {
             type: Schema.Types.ObjectId, ref: "User"
+        },
+        location: {
+            type: {
+                type: String,
+            },
+            coordinates: [Number],
         }
     },
     {

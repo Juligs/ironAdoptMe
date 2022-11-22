@@ -13,6 +13,8 @@ router.post('/signup', fileUploader.single("image"), (req, res, next) => {
 
     const { password } = req.body
 
+    console.log(req.body)
+
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(password, salt))
