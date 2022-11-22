@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="addressInput" class="form-label">Address</label>
-                    <textarea class="form-control" id="addressInput" rows="3" name="address"></textarea>
+                    <input type="text" class="form-control" id="addressInput" name="address">
                 </div>
                 <div class="mb-3">
                     <label for="imageInput" class="form-label">Imagen</label>
@@ -45,5 +45,7 @@
             </form>
         </div>
     </div>
-
 </div>
+<script src="../js/autocomplete.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>
