@@ -8,15 +8,16 @@ const User = require("../models/User.model");
 router.get("/map", (req, res, next) => {
     Event
         .find()
+        .populate("owner")
         .then(foundEvents => {
-            res.render("event/event-user", { foundEvents })
+            res.render("event/event-list", { foundEvents })
         })
         .catch(err => console.log(err))
 
 
 })
 router.get('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
-    res.render('event/create-event')
+    res.render('event/event-create')
 
 })
 router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("image"), (req, res, next) => {
@@ -81,7 +82,4 @@ router.post("/:idEvent/delete", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req
 })
 
 module.exports = router
-
-module.exports = router;
-
 
