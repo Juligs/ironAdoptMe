@@ -11,8 +11,11 @@ router.get("/list", isLoggedIn, (req, res) => {
         req.app.locals.isUser = true
         User
             .find({ role: "SHELTER" })
-            .then(users => res.render("users/list-user", { users }))
+            .then(users => {
+                res.render("users/list-user", { users })
+            })
             .catch(err => console.log(err))
+
     } else if (req.session.currentUser.role === "SHELTER") {
         req.app.locals.isShelter = true
         User
@@ -21,6 +24,7 @@ router.get("/list", isLoggedIn, (req, res) => {
                 res.render('users/list-user', { users })
             })
             .catch(err => console.log(err))
+
     } else {
         req.app.locals.isAdmin = true
         User
@@ -60,16 +64,15 @@ router.get('/:user_id/edit', (req, res) => {
             res.render('users/edit-user', {
                 user,
                 isAdmin: req.session.currentUser.role === 'ADMIN',
-
             })
         })
         .catch(err => console.log(err))
 })
 
-router.post('/:user_id/edit', (req, res) => {
-    const { username, image, role, phone, address } = req.body
-    console.log(req.body)
 
+router.post('/:user_id/edit', (req, res) => {
+
+    const { username, image, role, phone, address } = req.body
     const { user_id } = req.params
 
     User
@@ -77,6 +80,7 @@ router.post('/:user_id/edit', (req, res) => {
         .then(() => res.redirect(`/user/profile/${user_id}`))
         .catch(err => console.log(err))
 })
+
 
 router.post('/:user_ide/delete', (req, res) => {
 
@@ -86,8 +90,8 @@ router.post('/:user_ide/delete', (req, res) => {
         .findByIdAndDelete(user_id)
         .then(() => res.redirect("/user/list"))
         .catch(err => console.log(err))
-
 })
+
 
 router.get("/comment-list", (req, res) => {
 
@@ -96,13 +100,15 @@ router.get("/comment-list", (req, res) => {
         .then(comments => res.render("users/comment-user", { comments }))
         .catch(err => console.log(err))
 })
+
 router.get("/comment-create", checkRoles("SHELTER", "ADMIN"), (req, res, next) => res.render("users/user-create"))
 
 router.post("/comment-create", checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
 
     const { text, image } = req.body
 
-    Comment.create({ text, image })
+    Comment
+        .create({ text, image })
         .then(() => res.redirect("/user/comment-list"))
         .catch(err => console.log(err))
 })

@@ -5,6 +5,7 @@ const fileUploader = require('../config/cloudinary.config');
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard');
 const { create } = require("hbs");
 let petCreated;
+
 router.get("/list", isLoggedIn, (req, res, next) => {
 
     Pet
@@ -18,12 +19,16 @@ router.get("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, nex
 router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("petImg"), (req, res, next) => {
 
     const { name, age, breed, description } = req.body
+    const { path: image } = req.file
+    const { _id: shelterBy } = req.session.currentUser
 
-    Pet.create({ name, age, breed, description, image: req.file.path, shelterBy: req.session.currentUser._id })
-        .then(createdPet => User.findByIdAndUpdate(req.session.currentUser._id, { $push: { pets: createdPet._id } }))
-        .then(res.redirect("/pets/list"))
+    Pet
+        .create({ name, age, breed, description, image, shelterBy })
+        .then(createdPet => User.findByIdAndUpdate(shelterBy, { $push: { pets: createdPet._id } }))
+        .then(() => res.redirect("/pets/list"))
         .catch(err => console.log(err))
 })
+
 router.get("/:idPet/profile", (req, res, next) => {
 
     const { idPet } = req.params

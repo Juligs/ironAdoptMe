@@ -18,7 +18,7 @@ function getEvents() {
 
     axios
         .get('/api/events')
-        .then(response => setMarkers(response.data))
+        .then(response => console.log(response.data))
         .catch(err => console.log(err))
 }
 

@@ -5,7 +5,8 @@ const saltRounds = 10
 const fileUploader = require('../config/cloudinary.config');
 const { isLoggedOut } = require("../middleware/route-guard")
 const app = require("../app")
-
+const maps = require("./../services/map-api")
+const mapsApi = new maps()
 
 
 router.get('/signup', (req, res, next) => res.render('auth/signup'))
