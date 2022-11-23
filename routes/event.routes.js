@@ -4,6 +4,8 @@ const fileUploader = require('../config/cloudinary.config');
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard');
 const { create } = require("hbs");
 const User = require("../models/User.model");
+const maps = require("./../services/map-api")
+const mapsApi = new maps()
 
 router.get("/map", (req, res, next) => {
     Event
@@ -24,10 +26,20 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
     console.log(req.body)
     const { title, description, date, address } = req.body
 
-    Event
-        .create({ owner: req.session.currentUser._id, title, description, date, address, image: req.file.path })
-        .then(() => res.redirect('/event/map'))
-        .catch(err => console.log(err))
+    mapsApi.geocodeAddress(address).then(({ lat, lng }) => {
+        let eventLocation = {
+            type: 'Point',
+            coordinates: [lng, lat]
+        }
+        return eventLocation
+    }).then((eventLocation) => {
+        Event
+            .create({ owner: req.session.currentUser._id, title, description, date, address, location: eventLocation, image: req.file.path })
+            .then(() => res.redirect('/event/map'))
+            .catch(err => console.log(err))
+    })
+
+
 })
 
 router.post("/:eventID/join", isLoggedIn, (req, res, next) => {
