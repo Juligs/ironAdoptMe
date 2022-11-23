@@ -16,6 +16,12 @@ const petSchema = new Schema(
         size: {
             type: String
         },
+        location: {
+            type: {
+                type: String,
+            },
+            coordinates: [Number],
+        },
         status: {
             type: String,
             enum: ["IN ADOPTION", "RESERVED", "ADOPTED"],
@@ -32,7 +38,7 @@ const petSchema = new Schema(
         timestamps: true
     }
 );
-
+petSchema.index({ location: '2dsphere' })
 const Pet = model("Pet", petSchema);
 
 module.exports = Pet;

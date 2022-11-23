@@ -4,7 +4,6 @@ const User = require("./../models/User.model")
 const fileUploader = require('../config/cloudinary.config');
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard');
 
-
 router.get("/list", isLoggedIn, (req, res, next) => {
 
     Pet
@@ -20,9 +19,10 @@ router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
     const { name, age, breed, description } = req.body
     const { path: image } = req.file
     const { _id: shelterBy } = req.session.currentUser
+    const { location } = req.session.currentUser
 
     Pet
-        .create({ name, age, breed, description, image, shelterBy })
+        .create({ name, age, breed, location, description, image, shelterBy })
         .then(createdPet => User.findByIdAndUpdate(shelterBy, { $push: { pets: createdPet._id } }))
         .then(() => res.redirect("/pets/list"))
         .catch(err => console.log(err))

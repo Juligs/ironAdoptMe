@@ -10,7 +10,7 @@ const mapsApi = new maps()
 router.get("/map", (req, res, next) => {
     Event
         .find()
-        .populate("owner")
+        .populate('owner')
         .then(foundEvents => {
             res.render("event/event-list", { foundEvents })
         })
@@ -39,7 +39,7 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
 
             return Event.create({ owner, title, description, date, address, location, image: req.file.path })
         })
-        .then(foundEvents => res.render('event/event-list', { foundEvents }))
+        .then(() => res.redirect("/event/map"))
         .catch(err => console.log(err))
 })
 

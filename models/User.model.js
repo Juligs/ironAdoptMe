@@ -22,7 +22,12 @@ const userSchema = new Schema(
     },
     address: {
       type: String,
-      required: true
+    },
+    location: {
+      type: {
+        type: String,
+      },
+      coordinates: [Number],
     },
     phone: {
       type: String,
@@ -47,7 +52,7 @@ const userSchema = new Schema(
     timestamps: true
   }
 );
-
+userSchema.index({ location: '2dsphere' })
 const User = model("User", userSchema);
 
 module.exports = User;
