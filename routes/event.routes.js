@@ -18,28 +18,29 @@ router.get("/map", (req, res, next) => {
 
 
 })
+
 router.get('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
     res.render('event/event-create')
-
 })
+
 router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.single("image"), (req, res, next) => {
-    console.log(req.body)
+
     const { title, description, date, address } = req.body
+    const { _id: owner } = req.session.currentUser
 
-    mapsApi.geocodeAddress(address).then(({ lat, lng }) => {
-        let eventLocation = {
-            type: 'Point',
-            coordinates: [lng, lat]
-        }
-        return eventLocation
-    }).then((eventLocation) => {
-        Event
-            .create({ owner: req.session.currentUser._id, title, description, date, address, location: eventLocation, image: req.file.path })
-            .then(() => res.redirect('/event/map'))
-            .catch(err => console.log(err))
-    })
+    mapsApi
+        .geocodeAddress(address)
+        .then(({ lat, lng }) => {
 
+            let location = {
+                type: 'Point',
+                coordinates: [lng, lat]
+            }
 
+            return Event.create({ owner, title, description, date, address, location, image: req.file.path })
+        })
+        .then(() => res.redirect('/event/map'))
+        .catch(err => console.log(err))
 })
 
 router.post("/:eventID/join", isLoggedIn, (req, res, next) => {
@@ -50,8 +51,6 @@ router.post("/:eventID/join", isLoggedIn, (req, res, next) => {
         .findByIdAndUpdate(eventID, { $push: { participants: req.session.currentUser._id } })
         .then(() => res.redirect("/event/map"))
         .catch(err => console.log(err))
-
-
 })
 
 router.get("/:idEvent/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
@@ -69,16 +68,10 @@ router.post("/:idEvent/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUp
     const { idEvent } = req.params
     const { title, description, date, address, existingImage } = req.body
 
-    let imgUrl
-
-    if (req.file) {
-        imgUrl = req.file.path
-    } else {
-        imgUrl = existingImage
-    }
+    let image = req.file ? req.file.path : existingImage
 
     Event
-        .findByIdAndUpdate(idEvent, { title, description, date, address, image: imgUrl }, { new: true })
+        .findByIdAndUpdate(idEvent, { title, description, date, address, image }, { new: true })
         .then(() => res.redirect(`/event/map`))
         .catch(err => console.log(err))
 
