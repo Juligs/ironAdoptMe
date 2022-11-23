@@ -9,6 +9,7 @@
     bottom: 0;
     z-index: -1;
     opacity: .85;
+    
 }
 
 #myMap {
@@ -41,12 +42,23 @@ body {
     font-weight: bold;
 }
 
-#cardEvent{
-background-color: transparent;
-border-radius: 15px;
-
+.table{
+    background-color: transparent !important;
+    color: rgb(80, 75, 69);
+    font-weight: bold;
+    font-size: 15px;
+  
 }
-#textEvent{
-    background-color: transparent;
+#tableEvent{
+    background-color: #856d7a;
+    color: antiquewhite;
+    font-weight: bold;
+}
+
+#comments{
+border-color: #7e6a74;
+font-weight: bold;
+font-size: 18px;
+
 }
 

@@ -8,8 +8,8 @@ function renderMap() {
     myMap = new google.maps.Map(
         document.querySelector('#myMap'),
         {
-            zoom: 16,
-            center: { lat: 7.073365000301889, lng: -73.11252818908491 }
+            zoom: 15,
+            center: { lat: 40.39379213602231, lng: -3.6987830210114185 }
         }
     )
 }
