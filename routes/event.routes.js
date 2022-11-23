@@ -39,7 +39,7 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
 
             return Event.create({ owner, title, description, date, address, location, image: req.file.path })
         })
-        .then(() => res.redirect('/event/map'))
+        .then(foundEvents => res.render('event/event-list', { foundEvents }))
         .catch(err => console.log(err))
 })
 
