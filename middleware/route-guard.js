@@ -2,7 +2,7 @@ function isLoggedIn(req, res, next) {
     if (req.session.currentUser) {
         next()
     } else {
-        res.render('auth/login', { errorMessage: 'Inicia sesión para acceder' })
+        res.render('auth/login', { errorMessage: 'Sign in to access' })
     }
 }
 function isLoggedOut(req, res, next) {
@@ -16,7 +16,7 @@ const checkRoles = (...rolesToCheck) => (req, res, next) => {
     if (rolesToCheck.includes(req.session.currentUser.role)) {
         next()
     } else {
-        res.render('auth/login', { errorMessage: `No tienes permisos de ${rolesToCheck}` })
+        res.render('auth/login', { errorMessage: `You don't have permissions ${rolesToCheck}` })
     }
 }
 

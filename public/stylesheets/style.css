@@ -65,3 +65,16 @@ font-size: 18px;
 
 }
 
+#login{
+    font-weight: bold;
+    color: rgb(158, 113, 113);
+    font-size: 17px;
+}
+
+#singup{
+    font-weight: bold;
+    color: rgb(158, 113, 113);
+    font-size: 17px;
+
+}
+
