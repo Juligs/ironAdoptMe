@@ -78,3 +78,13 @@ font-size: 18px;
 
 }
 
+#firstHeading {
+background-color: #7e6a74;
+background-position: bottom;
+text-align: center;
+font-size: 20px;
+}
+#textEvent{
+    font-size: 15px;
+    font-weight: 500;
+}
