@@ -1,4 +1,6 @@
 let myMap
+const labels = "123456789";
+let labelIndex = 0;
 function init() {
     renderMap()
     getEvents()
@@ -32,9 +34,23 @@ function setMarkers(events) {
 
         new google.maps.Marker({
             map: myMap,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            label: labels[labelIndex++ % labels.length],
             position: { lat, lng },
             title: elm.name
         })
+
     })
+    marker.addListener("click", toggleBounce);
 }
+
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}
+
 
