@@ -3,8 +3,6 @@ const Pet = require("./../models/Pet.model")
 const User = require("./../models/User.model")
 const fileUploader = require('../config/cloudinary.config');
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard');
-const { create } = require("hbs");
-let petCreated;
 
 router.get("/list", isLoggedIn, (req, res, next) => {
 
@@ -21,9 +19,10 @@ router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
     const { name, age, breed, description } = req.body
     const { path: image } = req.file
     const { _id: shelterBy } = req.session.currentUser
+    const { location } = req.session.currentUser
 
     Pet
-        .create({ name, age, breed, description, image, shelterBy })
+        .create({ name, age, breed, location, description, image, shelterBy })
         .then(createdPet => User.findByIdAndUpdate(shelterBy, { $push: { pets: createdPet._id } }))
         .then(() => res.redirect("/pets/list"))
         .catch(err => console.log(err))
@@ -52,9 +51,8 @@ router.get("/:idPet/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res
 router.post("/:idPet/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
 
     const { idPet } = req.params
-    console.log("Este es el id", idPet)
+
     const { name, age, breed, description, status, image } = req.body
-    console.log("Este es el req body", name, age, breed, description, status, image)
 
     Pet
         .findByIdAndUpdate(idPet, { name, age, breed, description, status, image })

@@ -4,24 +4,29 @@ const User = require("../models/User.model")
 const saltRounds = 10
 const fileUploader = require('../config/cloudinary.config');
 const { isLoggedOut } = require("../middleware/route-guard")
-const app = require("../app")
 const maps = require("./../services/map-api")
 const mapsApi = new maps()
 
 
 router.get('/signup', (req, res, next) => res.render('auth/signup'))
-router.post('/signup', fileUploader.single("image"), (req, res, next) => {
+router.post('/signup', fileUploader.single("image"), async (req, res, next) => {
 
-    const { password } = req.body
+    const { email, password, username, address, phone } = req.body
+    const { path: image } = req.file
 
-    console.log(req.body)
+    const geoCodedAddress = await mapsApi.geocodeAddress(address)
 
-    bcrypt
-        .genSalt(saltRounds)
-        .then(salt => bcrypt.hash(password, salt))
-        .then(hashedPassword => User.create({ ...req.body, image: req.file.path, password: hashedPassword }))
-        .then(createdUser => res.redirect('/login'))
-        .catch(error => next(error))
+    const { lat, lng } = geoCodedAddress
+
+    let location = {
+        type: "Point",
+        coordinates: [lng, lat]
+    }
+
+    const generatedSalt = await bcrypt.genSalt(saltRounds)
+    const hashedPassword = await bcrypt.hash(password, generatedSalt)
+    User.create({ email, password: hashedPassword, username, address, location, phone, image })
+    res.redirect("/login")
 })
 
 router.get('/login', (req, res, next) => res.render('auth/login'))
