@@ -18,7 +18,7 @@ function getEvents() {
 
     axios
         .get('/api/events')
-        .then(response => console.log(response.data))
+        .then(response => setMarkers(response.data))
         .catch(err => console.log(err))
 }
 
@@ -27,8 +27,8 @@ function setMarkers(events) {
 
     events.forEach(elm => {
 
-        const lat = elm.location.coordinates[0]
-        const lng = elm.location.coordinates[1]
+        const lat = elm.location.coordinates[1]
+        const lng = elm.location.coordinates[0]
 
         new google.maps.Marker({
             map: myMap,
