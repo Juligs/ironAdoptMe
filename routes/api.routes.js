@@ -6,7 +6,7 @@ router.get("/events", (req, res, next) => {
 
     Event
         .find()
-        .select({ location: 1 })
+        .select()
         .then(event => res.json(event))
         .catch(err => console.log(err))
 })
