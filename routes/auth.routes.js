@@ -57,7 +57,7 @@ router.post('/logout', (req, res, next) => {
     req.app.locals.isShelter = false
     req.app.locals.isUser = false
     req.app.locals.isAdmin = false
-    req.session.destroy(() => res.redirect('/login'))
+    req.session.destroy(() => res.redirect('/'))
 })
 
 module.exports = router

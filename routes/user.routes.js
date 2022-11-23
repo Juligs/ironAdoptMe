@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./../models/User.model')
+const Comment = require('./../models/Comment.model')
+
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
 router.get("/list", isLoggedIn, (req, res) => {
@@ -86,5 +88,24 @@ router.post('/:user_ide/delete', (req, res) => {
         .catch(err => console.log(err))
 
 })
+
+router.get("/comment-list", (req, res) => {
+
+    Comment
+        .find()
+        .then(comments => res.render("users/comment-user", { comments }))
+        .catch(err => console.log(err))
+})
+router.get("/comment-create", checkRoles("SHELTER", "ADMIN"), (req, res, next) => res.render("users/user-create"))
+
+router.post("/comment-create", checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
+
+    const { text, image } = req.body
+
+    Comment.create({ text, image })
+        .then(() => res.redirect("/user/comment-list"))
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router
