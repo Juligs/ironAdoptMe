@@ -1,21 +1,6 @@
 <div class="container mt-5">
-<<<<<<< HEAD
-    <hr>
-    <h2>Our pets</h2>
-    <br>
-    <div class="row">
-        {{#each pets}}
-        <div class="col-md-3 col-sm-6">
-            <div id="petImage" class="card card-block">
-                <img id="petImage" src="{{image}}" alt="Pet-image">
-                <h5 class="card-title text-center mt-3 mb-3">{{name}}</h5>
-                <p class="card-text text-center">{{status}}
-                </p>
-                <a href="/pets/{{id}}/profile" class="btn btn-outline-dark text-center">More information</a>
-            </div>
-=======
     <h5 class="display-4">Find a little friend</h5>
-    <div class="row mt-5">
+    <div class="row mt-5 justify-content-around">
         <div class="col-3 form-container">
             <form class="mt-5" method="GET" action="/pets/filter">
                 <div class="mb-3">
@@ -44,40 +29,27 @@
                     <button type="submit">Filtrar</button>
                 </div>
             </form>
->>>>>>> eebf10b351eae8ace5eaf2251fbee485b7eab63d
         </div>
-        <div class="col-9 pets-container">
+        <div class="col-8 pets-container d-flex flex-wrap gap-3">
             {{#each pets}}
-            <div class="card deck " style="width: 18rem;">
-                <img src="{{image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <h5>{{status}}</h5>
-                    <div class="card-body">
-                        <a href="/pets/{{id}}/profile" class="btn btn-dark">More information</a>
-                    </div>
-
+            <div id="petImage" class="card card-block">
+                <img src="{{image}}" alt="Pet-image">
+                <h5 class="card-title text-center mt-3 mb-3">{{name}}</h5>
+                <p class="card-text text-center">{{status}}
+                </p>
+                <a href="/pets/{{id}}/profile" class="btn btn-outline-dark text-center">More information</a>
             </div>
             {{/each}}
         </div>
-
-
-
-
         {{#if isShelter}}
         <a href="/pets/create" class="btn btn-outline-dark">Add new pet</a>
         {{/if}}
-<<<<<<< HEAD
-
     </div>
-
 </div>
-=======
-        <a href="/" class="btn btn-dark mt-2">Home</a>
-        <script src="../js/geocoding.js"></script>
-        <script src="../js/autocomplete.js"></script>
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>
->>>>>>> eebf10b351eae8ace5eaf2251fbee485b7eab63d
+<a href="/" class="btn btn-dark mt-2">Home</a>
+</div>
+</div>
+<script src="../js/geocoding.js"></script>
+<script src="../js/autocomplete.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>
