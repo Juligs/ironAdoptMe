@@ -1,6 +1,7 @@
 let myMap
 const labels = "123456789";
 let labelIndex = 0;
+
 function init() {
     renderMap()
     getEvents()
@@ -14,6 +15,8 @@ function renderMap() {
             center: { lat: 40.39379213602231, lng: -3.6987830210114185 }
         }
     )
+
+
 }
 
 function getEvents() {
@@ -27,30 +30,43 @@ function getEvents() {
 
 function setMarkers(events) {
 
-    events.forEach(elm => {
+    events.forEach(event => {
 
-        const lat = elm.location.coordinates[1]
-        const lng = elm.location.coordinates[0]
+        const lat = event.location.coordinates[1]
+        const lng = event.location.coordinates[0]
+        const infoWindow = new google.maps.InfoWindow({
+            content: event.address
+        })
 
-        new google.maps.Marker({
+
+        const marker = new google.maps.Marker({
             map: myMap,
             draggable: true,
             animation: google.maps.Animation.DROP,
             label: labels[labelIndex++ % labels.length],
             position: { lat, lng },
-            title: elm.name
+            title: event.title
         })
 
+        marker.addListener('click', () => {
+            const contentString =
+                '<div id="content">' +
+                `<h5 id="firstHeading" class="firstHeading" style="color:white">${event.title}</h5>` +
+                '<div id="bodyContent">' +
+                `<p id="textEvent">${event.address}</p>` +
+                "</div>"
+            infoWindow.close();
+            infoWindow.setContent(contentString);
+            infoWindow.open(marker.getMap(), marker);
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(() => {
+                    marker.setAnimation(null)
+                }, 2000)
+
+            }
+        })
     })
-    marker.addListener("click", toggleBounce);
 }
-
-function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-    } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-}
-
-
