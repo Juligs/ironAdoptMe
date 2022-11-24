@@ -43,16 +43,22 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
         .catch(err => console.log(err))
 })
 
+router.get(':idEvent/details', isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
+    res.render('event/event-details')
+})
+
+
 router.post("/:eventID/join", isLoggedIn, async (req, res, next) => {
 
     const { eventID } = req.params
 
     Event
         .findByIdAndUpdate(eventID, { $addToSet: { participants: req.session.currentUser._id } })
-        .then(() => res.redirect("/event/map"))
+        .then(() => res.redirect(`/event/${eventID}/details`))
         .catch(err => next(err))
 
 })
+
 
 router.get("/:idEvent/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
 
@@ -88,5 +94,14 @@ router.post("/:idEvent/delete", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req
         .catch(err => console.log(err))
 })
 
+router.get("/:idEvent/details", (req, res, next) => {
+
+    const { idEvent } = req.params
+
+    Event
+        .findById(idEvent)
+        .then(event => res.render("event/event-details", { event }))
+        .catch(err => console.log(err))
+})
 module.exports = router
 

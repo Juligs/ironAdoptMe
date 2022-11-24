@@ -19,6 +19,15 @@
 
 } 
 
+#myMapDetails{
+    height: 350px;
+    border-bottom: 2px;
+    border-radius: 10px;
+    background-color: red;
+
+
+}
+
 #cardIndex{
     background-color: transparent;
     border-color: #856d7a;

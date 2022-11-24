@@ -1,0 +1,33 @@
+<div class="container col 6 mt-5">
+
+    <div class="col6 align-items-end">
+        <figure id="myMapDetails"></figure>
+
+    </div>
+    <div class="row justify-content-right">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{event.image}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{event.title}}</h5>
+                <p class="card-text">{{event.description}}</p>
+                <input type="hidden" value="{{event._id}}" id="eventID">
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{event.date}}</li>
+                <li class="list-group-item">{{event.address}}</li>
+                <li class="list-group-item">{{event.participants}}</li>
+            </ul>
+
+            <form action="/pets/{{pet.id}}/delete" method="POST" style="display: inline">
+                <input type="submit" value="delete profile" class="btn btn-danger">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/map.details.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&callback=init"></script>

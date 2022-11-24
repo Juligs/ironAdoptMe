@@ -4,11 +4,6 @@
         <hr>
         <div class="col6 align-items-end">
             <figure id="myMap"></figure>
-            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-            <script src="/js/map.js"></script>
-            <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&callback=init"></script>
-            <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         </div>
     </div>
     <hr>
@@ -37,7 +32,7 @@
                         <div id="eventstable" lass="d-flex align-items-center">
                             <img src="{{image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle" />
                             <div class="ms-3">
-                                <h4 class="fw-bold">{{title}}</h4>
+                                <h4 class="fw-bold"><a href="/event/{{_id}}/details">{{title}}</a></h4>
                             </div>
                         </div>
                     </td>
@@ -78,3 +73,8 @@
         </table>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/map.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&callback=init"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
