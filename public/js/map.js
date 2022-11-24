@@ -11,7 +11,7 @@ function renderMap() {
     myMap = new google.maps.Map(
         document.querySelector('#myMap'),
         {
-            zoom: 15,
+            zoom: 12,
             center: { lat: 40.39379213602231, lng: -3.6987830210114185 }
         }
     )

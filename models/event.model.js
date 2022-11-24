@@ -4,7 +4,8 @@ const { Schema, model } = require("mongoose");
 const eventSchema = new Schema(
     {
         owner: {
-            type: Schema.Types.ObjectId, ref: "User"
+            type: Schema.Types.ObjectId, ref: "User",
+
         },
         title: {
             type: String,

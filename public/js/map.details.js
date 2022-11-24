@@ -2,27 +2,30 @@ let myMapDetails
 const labels = "123456789";
 let labelIndex = 0;
 
-const eventID = document.getElementById("eventID")
+const eventID = document.getElementById("eventID").value
+console.log(eventID)
 
 function init() {
-    renderMap()
     getEvents()
 }
-function renderMap() {
+function renderMap(event) {
+    const lat = event.location.coordinates[1]
+    const lng = event.location.coordinates[0]
 
     myMapDetails = new google.maps.Map(
         document.querySelector('#myMapDetails'),
         {
-            zoom: 15,
-            center: { lat: 40.39379213602231, lng: -3.6987830210114185 }
+            zoom: 17,
+            center: { lat: lat, lng: lng }
         }
     )
+    setMarkers(event)
 }
 function getEvents() {
 
     axios
         .get(`/api/${eventID}/details`)
-        .then(response => console.log(response.data))
+        .then(response => renderMap(response.data))
         .catch(err => console.log(err))
 }
 

@@ -20,10 +20,11 @@
 } 
 
 #myMapDetails{
-    height: 350px;
-    border-bottom: 2px;
+    height: 480px;
+    width:550px ;
     border-radius: 10px;
-    background-color: red;
+    box-shadow: 80px;
+  
 
 
 }
@@ -96,4 +97,111 @@ font-size: 20px;
 #textEvent{
     font-size: 15px;
     font-weight: 500;
+}
+
+#eventName{
+    text-decoration: none;
+    color: rgb(80, 75, 69);
+    font-size: 20px
+    
+}
+
+#cardDetails{
+    margin-right: 60px;
+    background-color: transparent;
+    
+}
+
+#cardDetailsGroup{
+    background-color: transparent;
+}
+
+#cardDetailsGroup1{
+ background-color: transparent;
+}
+
+#eventstable2{
+margin-right: 2em;
+padding-bottom: 10px;
+font-size: 15px;
+}
+
+.bg-image {
+  background-image: url('https://i.pinimg.com/564x/c4/11/1d/c4111d6652e929d9f408e617e80aab6c.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+
+#petImage > img{
+ object-fit: cover;
+ width: 275px;
+ height: 270px;
+}
+
+div [class^="col-"]{
+  padding-left:5px;
+  padding-right:5px;
+}
+#petImage{
+  transition:0.5s;
+  cursor:pointer;
+}
+#petImage .card-title{  
+  font-size:15px;
+  transition:1s;
+  cursor:pointer;
+}
+#petImage .card-title i{  
+  font-size:15px;
+  transition:1s;
+  cursor:pointer;
+  color:#ffa710
+}
+ #petImage .card-title i:hover{
+  transform: scale(1.25) rotate(100deg); 
+  color:#18d4ca;
+  
+}
+#petImage.card:hover{
+  transform: scale(1.05);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+.card-text{
+  height:80px;  
+}
+
+#petImage.card::before, #petImage.card::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  content: '';
+  pointer-events: none;
+}
+.card::before {
+  transform-origin: left top;
+}
+.card::after {
+  transform-origin: right bottom;
+}
+#petImage.card:hover::before, #petImage.card:hover::after, #petImage.card:focus::before, #petImage.card:focus::after {
+  transform: scale3d(1, 1, 1);
+}
+#petImageProfile{
+  object-fit: cover;
+   width: 275px;
+ height: 270px;
+
+}  
+
+#imageShelter{
+ object-fit: cover;
+ width: 275px;
+ height: 270px;
+
 }

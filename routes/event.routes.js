@@ -100,6 +100,7 @@ router.get("/:idEvent/details", (req, res, next) => {
 
     Event
         .findById(idEvent)
+        .populate('participants')
         .then(event => res.render("event/event-details", { event }))
         .catch(err => console.log(err))
 })

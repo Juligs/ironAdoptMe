@@ -1,32 +1,47 @@
-<div class="container col 6 mt-5">
+<div class="container mt-5 ">
+    <div class="row d-flex justify-content-around">
+        <div class="col-6">
+            <figure id="myMapDetails"></figure>
 
-    <div class="col6 align-items-end">
-        <figure id="myMapDetails"></figure>
+        </div>
+        <div class="col-3">
+            <div id="cardDetails" class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{event.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.title}}</h5>
+                    <p class="card-text">{{event.description}}</p>
+                    <input type="hidden" value="{{event._id}}" id="eventID">
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li id="cardDetailsGroup" class="list-group-item"> Date: {{event.date}}</li>
+                    <li id="cardDetailsGroup1" class="list-group-item"> Address :{{event.address}}</li>
+                </ul>
 
-    </div>
-    <div class="row justify-content-right">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{event.image}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{event.title}}</h5>
-                <p class="card-text">{{event.description}}</p>
-                <input type="hidden" value="{{event._id}}" id="eventID">
+                <form action="/event/{{event.id}}/delete" method="POST" style="display: inline">
+                    <input type="submit" value="delete profile" class="btn btn-outline-light text-center mb-3">
+                </form>
+
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{event.date}}</li>
-                <li class="list-group-item">{{event.address}}</li>
-                <li class="list-group-item">{{event.participants}}</li>
-            </ul>
-
-            <form action="/pets/{{pet.id}}/delete" method="POST" style="display: inline">
-                <input type="submit" value="delete profile" class="btn btn-danger">
-            </form>
-
         </div>
     </div>
 </div>
+<hr>
+<h4 class="text-center text-secondary text-uppercase">Participants</h4>
+<hr>
+<div id="eventstable2" class="container d-flex">
+    {{#each event.participants}}
 
+
+    <img src="{{this.image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle d-block" />
+    <div class="ms-3">
+        <h4 class="fw-bold"><a id="eventName" href="/event/{{_id}}/details">{{this.username}}</a></h4>
+    </div>
+
+
+    {{/each}}
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/map.details.js"></script>
 <script

@@ -1,36 +1,24 @@
 <div class="container mt-5">
     <hr>
+    <h2>Our pets</h2>
+    <br>
     <div class="row">
-
-        <h2>Usuarios</h2>
-        <br>
         {{#each users}}
-        <div class="col-md-4 mb-3 ">
-            <div>
-                <img src={{image}} class="card-img-top mt-5">
-                <h5 class="card-title mt-2">{{username}} </h5>
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-block mt-5">
+                <img id="imageShelter" src="{{image}}" alt="Pet-image">
+                <h5 class="card-title text-center mt-3 mb-3">{{username}}</h5>
 
-                <a href="/user/{{id}}/profile" class="btn btn-warning">More information</a>
-
+                <a href="/user/{{id}}/profile" class="btn btn-outline-dark">More information</a>
             </div>
         </div>
         {{/each}}
+        {{#if isShelter}}
+        <a href="/pets/create" class="btn btn-outline-light">Add new pet</a>
+        {{/if}}
 
-        {{!-- {{#if isShelter}}
-        <h2>Possible adopters</h2>
-        <br>
-        {{#each user}}
-        <div class="col-md-4 mb-3 ">
-            <div>
-                <img src={{profileImg}} class="card-img-top mt-5">
-                <h5 class="card-title mt-2">{{username}} </h5>
-
-                <a href="/user/{{id}}/profile" class="btn btn-warning">More information</a>
-
-            </div>
-        </div>
-        {{/each}}
-        {{/if}} --}}
-
-        <a href="/" class="btn btn-dark mt-2">Home</a>
     </div>
+
+</div>
+
+</div>
