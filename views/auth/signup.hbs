@@ -6,45 +6,47 @@
                     class="img-fluid mt-3 mb-3" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 ">
-
-                <!-- Email input -->
                 <form id="singup" action="/signup" method="POST" enctype="multipart/form-data">
-                    <div class="form-outline   mb-3">
-                        <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" class="form-control form-control-lg" id="emailInput" name="email" </div>
+                    <div class="form-outline mb-3">
+                        <label for="emailInput" class="form-label mt-3">Email</label>
+                        <input type="email" class="form-control form-control-lg" id="emailInput" name="email">
+                    </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-3">
-                            <label for="pwdInput" class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-lg" id="pwdInput" name="password"
-                                </div>
+                    <div class="form-outline mb-3">
+                        <label for="pwdInput" class="form-label">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="pwdInput" name="password">
+                    </div>
 
-                            <div class="form-outline mb-3">
-                                <label for="addressInput" class="form-label">Address</label>
-                                <input type="text" class="form-control form-control-lg" id="addressInput"
-                                    name="address">
-                            </div>
+                    <div class="form-outline mb-3">
+                        <label for="usernameInput" class="form-label">Username</label>
+                        <input type="username" class="form-control form-control-lg" id="usernameInput" name="username">
+                    </div>
 
-                            <div class="form-outline mb-3">
-                                <label for="phoneInput" class="form-label">Phone</label>
-                                <input type="number" class="form-control form-control-lg" id="phoneInput" name="phone">
-                            </div>
+                    <div class="form-outline mb-3">
+                        <label for="addressInput" class="form-label">Address</label>
+                        <input type="text" class="form-control form-control-lg" id="addressInput" name="address">
+                    </div>
 
-                            <div class="mb-3">
-                                <label for="imageInput" class="form-label">Image</label>
-                                <input type="file" class="form-control " id="imageInput" name="image">
-                                <div class="form-text">Upload the profile image you want.</div>
-                            </div>
+                    <div class="form-outline mb-3">
+                        <label for="phoneInput" class="form-label">Phone</label>
+                        <input type="number" class="form-control form-control-lg" id="phoneInput" name="phone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imageInput" class="form-label">Image</label>
+                        <input type="file" class="form-control " id="imageInput" name="image">
+                        <div class="form-text">Upload the profile image you want.</div>
+                    </div>
 
 
 
-                            <div class="text-center text-lg-start mt-4 pt-2">
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-outline-dark">Login</button>
-                                </div>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Do you already have an account? <a href="/login"
-                                        class="link-dark">Log in</a></p>
-                            </div>
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-outline-dark">Sign up</button>
+                        </div>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Do you already have an account? <a href="/login"
+                                class="link-dark">Log in</a></p>
+                    </div>
 
                 </form>
             </div>

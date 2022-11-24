@@ -32,7 +32,16 @@
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false">Events</a>
                   <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="/event/create">Add events</a></li>
+
+                     <li> {{#if isAdmin}}
+                        <a class="dropdown-item" href="/event/create">Add events</a>
+                        {{/if}}
+                     </li>
+
+                     <li> {{#if isShelter}}
+                        <a class="dropdown-item" href="/event/create">Add events</a>
+                        {{/if}}
+                     </li>
                      <li><a class="dropdown-item" href="/event/map">Upcoming events</a></li>
                   </ul>
                </li>

@@ -59,7 +59,7 @@ router.get("/:idEvent/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, r
 
     Event
         .findById(idEvent)
-        .then(event => res.render("event/edit-event", { event }))
+        .then(event => res.render("event/event-edit", { event }))
         .catch(err => console.log(err))
 })
 
