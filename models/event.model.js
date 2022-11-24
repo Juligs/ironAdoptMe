@@ -27,9 +27,9 @@ const eventSchema = new Schema(
             type: String,
             set: v => v || "https://i.stack.imgur.com/l60Hf.png"
         },
-        participants: {
+        participants: [{
             type: Schema.Types.ObjectId, ref: "User"
-        },
+        }],
         location: {
             type: {
                 type: String,

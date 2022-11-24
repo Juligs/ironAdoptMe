@@ -37,20 +37,21 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
                 coordinates: [lng, lat]
             }
 
-            return Event.create({ owner, title, description, date, address, location, image: req.file.path })
+            return Event.create({ owner, title, description, date, participants: owner, address, location, image: req.file.path })
         })
         .then(() => res.redirect("/event/map"))
         .catch(err => console.log(err))
 })
 
-router.post("/:eventID/join", isLoggedIn, (req, res, next) => {
+router.post("/:eventID/join", isLoggedIn, async (req, res, next) => {
 
     const { eventID } = req.params
 
     Event
-        .findByIdAndUpdate(eventID, { $push: { participants: req.session.currentUser._id } })
+        .findByIdAndUpdate(eventID, { $addToSet: { participants: req.session.currentUser._id } })
         .then(() => res.redirect("/event/map"))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
+
 })
 
 router.get("/:idEvent/edit", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
