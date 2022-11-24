@@ -1,25 +1,60 @@
 <div class="container mt-5">
-    <hr>
-    <div class="row">
-        <h2>Our pets</h2>
-        <br>
-        {{#each pets}}
+    <h5 class="display-4">Find a little friend</h5>
+    <div class="row mt-5">
+        <div class="col-3 form-container">
+            <form class="mt-5" method="GET" action="/pets/filter">
+                <div class="mb-3">
+                    <div class="form-outline mb-3">
+                        <label for="addressInput" class="form-label">Filter by address</label>
+                        <input type="text" class="form-control form-control-lg" id="addressInput" name="address">
+                    </div>
+                    <label for="ageInput" class="form-label">Filter by age</label>
+                    <div class="d-flex">
+                        <input type="number" class="form-control" id="ageInput" name="age">
+                    </div>
 
-
-        <div class="card deck " style="width: 18rem;">
-            <img src="{{image}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{name}}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <h5>{{status}}</h5>
-                <div class="card-body">
-                    <a href="/pets/{{id}}/profile" class="btn btn-dark">More information</a>
                 </div>
-
+                <div class="mb-3">
+                    <label for="breedInput" class="form-label">Filter by breed</label>
+                    <input type="text" class="form-control" id="breedInput" name="breed">
+                </div>
+                <div class="mb-3">
+                    <label for="tipoInput" class="form-label">Filter by species</label>
+                    <select name="species" class="form-control" id="tipoInput">
+                        <option value="PERRO">Perro</option>
+                        <option value="GATO">Gato</option>
+                    </select>
+                </div>
+                <div class="d-grid">
+                    <button type="submit">Filtrar</button>
+                </div>
+            </form>
         </div>
-        {{/each}}
+        <div class="col-9 pets-container">
+            {{#each pets}}
+            <div class="card deck " style="width: 18rem;">
+                <img src="{{image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <h5>{{status}}</h5>
+                    <div class="card-body">
+                        <a href="/pets/{{id}}/profile" class="btn btn-dark">More information</a>
+                    </div>
+
+            </div>
+            {{/each}}
+        </div>
+
+
+
+
         {{#if isShelter}}
         <a href="/pets/create" class="btn btn-dark">Add new pet</a>
         {{/if}}
         <a href="/" class="btn btn-dark mt-2">Home</a>
+        <script src="../js/geocoding.js"></script>
+        <script src="../js/autocomplete.js"></script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>
