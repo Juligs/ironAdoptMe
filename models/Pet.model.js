@@ -16,6 +16,10 @@ const petSchema = new Schema(
         size: {
             type: String
         },
+        species: {
+            type: String,
+            enum: ["PERRO", "GATO"]
+        },
         location: {
             type: {
                 type: String,
