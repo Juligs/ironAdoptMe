@@ -21,7 +21,7 @@ router.get("/list", isLoggedIn, (req, res) => {
     } else if (req.session.currentUser.role === "SHELTER") {
         req.app.locals.isShelter = true
         User
-            .find()
+            .find({ role: "SHELTER" })
             .then(users => {
                 res.render('users/list-user', { users })
             })
@@ -30,7 +30,7 @@ router.get("/list", isLoggedIn, (req, res) => {
     } else {
         req.app.locals.isAdmin = true
         User
-            .find()
+            .find({ role: "SHELTER" })
             .then(users => {
                 res.render('users/list-user', { users })
             })
