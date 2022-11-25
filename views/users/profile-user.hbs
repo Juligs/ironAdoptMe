@@ -3,73 +3,39 @@
         <div class="card col-8 h-100">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{user.image}}" class="img-fluid rounded-start" alt="...">
+                    <img src="{{foundUser.image}}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Name: {{user.username}}</h5>
-                        <h6 class="card-title"> About me: {{user.description}}</h6>
-                        <h6 class="card-title">Role: {{user.role}}</h6>
-                        <h6 class="card-title">Email: {{user.email}}</h6>
-                        <h6 class="card-title">Address: {{user.address}}</h6>
-                        <h6 class="card-title"> Phone: {{user.phone}}</h6>
-
-                        {{#if isAdmin}}
-                        <a href='/user/{{user._id}}/edit' class="btn btn-dark">edit profile</a>
-                        <form action="/user/{{user._id}}/delete" method="POST" style="display: inline">
-                            <input type="submit" value="delete profile" class="btn btn-danger">
-                        </form>
-                        {{/if}}
-
+                        <h5 class="card-title">Name: {{foundUser.username}}</h5>
+                        <h6 class="card-title"> About me: {{foundUser.description}}</h6>
+                        <h6 class="card-title">Role: {{foundUser.role}}</h6>
+                        <h6 class="card-title">Email: {{foundUser.email}}</h6>
+                        <h6 class="card-title">Address: {{foundUser.address}}</h6>
+                        <h6 class="card-title"> Phone: {{foundUser.phone}}</h6>
                         {{#if isOwner}}
                         <a href="/user/{{user._id}}/edit" class="btn btn-warning">edit profile</a>
                         {{/if}}
-
                     </div>
                 </div>
             </div>
-            <a href="/" class="btn btn-dark">Inicio</a>
         </div>
     </div>
-</div>
-
-
-
-{{!-- <div class="container mt-5">
+    {{#if isShelter}}
+    <h4 class="display-3">Friends you can find in our shelter</h4>
     <hr>
-    <div class="row">
-        <h1>My profile</h1>
-        <br>
-        <div class="col-md-4 mb-3 ">
-            <div>
-                <img src={{user.image}} class="card-img-top mt-5">
-                <div>
-                    <h5 class="card-title mt-5">User name : {{user.username}} </h5>
-                    <h5 class="card-title mt-2">Description: {{user.description}} </h5>
-                    {{#if isAdmin}}
-                    <h5 class="card-title mt-2">Rol: {{user.role}} </h5>
-                    {{/if}}
-                    <h5 class="card-title mt-2">Address: {{user.address}} </h5>
-                    <h5 class="card-title mt-2">Cell phone: {{user.phone}} </h5>
-
-
-
-                    {{#if isAdmin}}
-                    <a href='/user/{{user._id}}/edit' class="btn btn-dark">edit profile</a>
-                    <form action="/user/{{user._id}}/delete" method="POST" style="display: inline">
-                        <input type="submit" value="delete profile" class="btn btn-danger">
-                    </form>
-                    {{/if}}
-
-                    {{#if isOwner}}
-                    <a href="/user/{{user._id}}/edit" class="btn btn-warning">edit profile</a>
-                    {{/if}}
-
-                </div>
+    <div class="d-flex flex-wrap mt-5 gap-3">
+        {{#each foundUser.pets}}
+        <div id="petImage" class="card card-block">
+            <img src="{{this.image}}" alt="Pet-image">
+            <h5 class="card-title text-center mt-3 mb-3">{{this.name}}</h5>
+            <p class="card-text text-center">{{this.status}}</p>
+            <div class="d-flex"><a href="/pets/{{this.id}}/profile" class="btn btn-outline-dark text-center">Details</a>
             </div>
+
         </div>
+        {{/each}}
 
-
-
-        <a href="/" class="btn btn-dark">Inicio</a>
-    </div> --}}
+    </div>
+    {{/if}}
+</div>

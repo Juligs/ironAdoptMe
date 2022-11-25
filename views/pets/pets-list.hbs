@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/dc3bac782e.js" crossorigin="anonymous"></script>
 <div class="container mt-5">
     <h5 class="display-4">Find a little friend</h5>
     <div class="row mt-5 justify-content-around">
@@ -35,9 +36,14 @@
             <div id="petImage" class="card card-block">
                 <img src="{{image}}" alt="Pet-image">
                 <h5 class="card-title text-center mt-3 mb-3">{{name}}</h5>
-                <p class="card-text text-center">{{status}}
-                </p>
-                <a href="/pets/{{id}}/profile" class="btn btn-outline-dark text-center">More information</a>
+                <p class="card-text text-center">{{status}}</p>
+                <div class="d-flex"><a href="/pets/{{id}}/profile" class="btn btn-outline-dark text-center">Details</a>
+                    {{#if isUser}}
+                    <form action="/pets/{{_id}}/like"><button type="submit" class="button-23"><i
+                                class="fa-regular fa-heart"></i></button></form>
+                    {{/if}}
+                </div>
+
             </div>
             {{/each}}
         </div>

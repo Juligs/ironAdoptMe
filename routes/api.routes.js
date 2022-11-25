@@ -14,10 +14,17 @@ router.get("/:idEvent/details", (req, res, next) => {
 
     const { idEvent } = req.params
 
+    const { _id } = req.session.currentUser
+
     Event
         .findById(idEvent)
-        .then(event => res.json(event))
-        .catch(err => console.log(err))
+        .then(event => {
+            if (event.owner.valueOf() == _id) {
+                req.session.isOwner = true
+            }
+            res.json(event)
+        })
+        .catch(err => next(err))
 })
 
 

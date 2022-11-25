@@ -33,10 +33,12 @@ router.post("/create", isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
 router.get("/:idPet/profile", (req, res, next) => {
 
     const { idPet } = req.params
-
     Pet
         .findById(idPet)
-        .then(pet => res.render("pets/profile-pet", { pet }))
+        .then(pet => res.render("pets/profile-pet", {
+            pet,
+            isOwner: req.session.currentUser._id === pet.shelterBy.valueOf()
+        }))
         .catch(err => console.log(err))
 })
 
@@ -74,7 +76,39 @@ router.post("/:idPet/delete", isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, 
         .catch(err => console.log(err))
 })
 
-router.get("/filter", isLoggedIn, async (req, res) => {
+router.get("/filter", isLoggedIn, async (req, res, next) => {
+
+    const { age, breed, species, address } = req.query
+    const query = {}
+
+
+    if (age) query.age = age
+    if (breed) query.breed = breed
+    if (species) query.species = species
+    if (address) {
+        const geoCodedAddress = await mapsApi.geocodeAddress(address)
+        const { lat, lng } = geoCodedAddress
+        query.location = {
+            $near: {
+                $maxDistance: 20000,
+                $geometry: {
+                    type: "Point",
+                    coordinates: [lng, lat]
+                }
+            }
+        }
+    }
+
+
+
+    Pet
+        .find(query)
+        .then(pets => res.render("pets/pets-list", { pets }))
+        .catch(err => next(err))
+
+
+})
+router.post("/:idPet/like", isLoggedIn, async (req, res, next) => {
 
     const { age, breed, species, address } = req.query
     const query = {}

@@ -14,15 +14,16 @@
                         <h6 class="card-title">Description{{pet.description}}</h6>
                         <h6 class="card-title"> Status: {{pet.status}}</h6>
 
+                        {{#if isOwner}}
                         <a href='/pets/{{pet._id}}/edit' class="btn btn-dark">edit profile</a>
                         <form action="/pets/{{pet.id}}/delete" method="POST" style="display: inline">
                             <input type="submit" value="delete profile" class="btn btn-danger">
                         </form>
+                        {{/if}}
 
                     </div>
                 </div>
             </div>
-            <a href="/" class="btn btn-dark">Inicio</a>
         </div>
     </div>
 </div>

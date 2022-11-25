@@ -46,6 +46,7 @@ router.post('/login', (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
+                req.app.locals.user = user
                 if (req.session.currentUser.role === "USER") {
                     req.app.locals.isUser = true
                 } else if (req.session.currentUser.role === "SHELTER") {
@@ -60,6 +61,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/logout', (req, res, next) => {
+    req.app.locals.isLoggedIn = false
     req.app.locals.isShelter = false
     req.app.locals.isUser = false
     req.app.locals.isAdmin = false

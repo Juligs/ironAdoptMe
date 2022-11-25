@@ -43,11 +43,6 @@ router.post('/create', isLoggedIn, checkRoles("SHELTER", "ADMIN"), fileUploader.
         .catch(err => console.log(err))
 })
 
-router.get(':idEvent/details', isLoggedIn, checkRoles("SHELTER", "ADMIN"), (req, res, next) => {
-    res.render('event/event-details')
-})
-
-
 router.post("/:eventID/join", isLoggedIn, async (req, res, next) => {
 
     const { eventID } = req.params

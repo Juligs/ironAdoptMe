@@ -11,16 +11,22 @@ const hbs = require("hbs");
 require("./config")(app);
 require('./config/session.config')(app)
 
-hbs.registerPartials(__dirname + "/views/partials")
-
 app.use((req, res, next) => {
     if (req.session.currentUser) {
-        app.locals.userName = req.session.currentUser.username
+        app.locals.user = req.session.currentUser
     } else {
-        app.locals.userName = null
+        app.locals.user = null
     }
     next()
 })
+
+hbs.registerPartials(__dirname + "/views/partials")
+
+hbs.registerHelper('isOwner', function (value, user) {
+    return value == user;
+});
+
+
 
 // Routes
 require("./routes")(app)

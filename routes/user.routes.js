@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('./../models/User.model')
 const Comment = require('./../models/Comment.model')
+const maps = require("./../services/map-api")
+const mapsApi = new maps()
 
 const { isLoggedIn, checkRoles } = require('./../middleware/route-guard')
 
@@ -43,14 +45,15 @@ router.get('/:user_id/profile', (req, res) => {
 
     User
         .findById(user_id)
-        .then(user => {
+        .populate("pets")
+        .then(foundUser => {
             res.render('users/profile-user', {
-                user,
-                isAdmin: req.session.currentUser.role === 'ADMIN',
+                foundUser,
+                isShelter: req.session.currentUser.role === 'SHELTER',
                 isOwner: req.session.currentUser._id === user_id,
             })
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
@@ -111,6 +114,32 @@ router.post("/comment-create", checkRoles("SHELTER", "ADMIN"), (req, res, next) 
         .create({ text, image })
         .then(() => res.redirect("/user/comment-list"))
         .catch(err => console.log(err))
+})
+
+router.get("/filter", isLoggedIn, async (req, res, next) => {
+
+    const { address } = req.query
+    const query = {}
+
+    if (address) {
+        const geoCodedAddress = await mapsApi.geocodeAddress(address)
+        const { lat, lng } = geoCodedAddress
+        query.location = {
+            $near: {
+                $maxDistance: 20000,
+                $geometry: {
+                    type: "Point",
+                    coordinates: [lng, lat]
+                }
+            }
+        }
+    }
+    User
+        .find(query)
+        .then(users => res.render("users/list-user", { users }))
+        .catch(err => next(err))
+
+
 })
 
 

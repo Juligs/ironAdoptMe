@@ -1,24 +1,39 @@
+<script src="https://kit.fontawesome.com/dc3bac782e.js" crossorigin="anonymous"></script>
 <div class="container mt-5">
-    <hr>
-    <h2>Our pets</h2>
-    <br>
-    <div class="row">
-        {{#each users}}
-        <div class="col-md-3 col-sm-6">
-            <div class="card card-block mt-5">
-                <img id="imageShelter" src="{{image}}" alt="Pet-image">
-                <h5 class="card-title text-center mt-3 mb-3">{{username}}</h5>
-
-                <a href="/user/{{id}}/profile" class="btn btn-outline-dark">More information</a>
+    <h5 class="display-4">Get in touch with our shelters</h5>
+    <div class="form-container">
+        <form class="mt-5" method="GET" action="/user/filter">
+            <div class="mb-3">
+                <div class="form-outline mb-3">
+                    <label for="addressInput" class="form-label">Filter by address</label>
+                    <input type="text" class="form-control form-control-lg" id="addressInput" name="address">
+                </div>
             </div>
-        </div>
-        {{/each}}
-        {{#if isShelter}}
-        <a href="/pets/create" class="btn btn-outline-light">Add new pet</a>
-        {{/if}}
-
+            <div class="d-grid col-2">
+                <button type="submit">Filter</button>
+            </div>
+        </form>
     </div>
+    <div class="row mt-5 justify-content-around">
 
-</div>
+        <div class="col-8 pets-container d-flex flex-wrap gap-3">
+            {{#each users}}
+            <div id="petImage" class="card card-block">
+                <img src="{{image}}" alt="Pet-image">
+                <h5 class="card-title text-center mt-3 mb-3">{{username}}</h5>
+                <p class="card-text text-center">{{email}}</p>
+                <p class="card-text text-center">{{address}}</p>
+                <div class="d-flex"><a href="/user/{{id}}/profile" class="btn btn-outline-dark text-center">Details</a>
+                </div>
 
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
+</div>
+</div>
+<script src="../js/geocoding.js"></script>
+<script src="../js/autocomplete.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjIJhN72PqJK2wdk2gLVBkE7XOh6ijmK8&libraries=places&callback=init"></script>

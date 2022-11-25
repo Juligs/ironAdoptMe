@@ -16,10 +16,14 @@
                     <li id="cardDetailsGroup" class="list-group-item"> Date: {{event.date}}</li>
                     <li id="cardDetailsGroup1" class="list-group-item"> Address :{{event.address}}</li>
                 </ul>
-
-                <form action="/event/{{event.id}}/delete" method="POST" style="display: inline">
-                    <input type="submit" value="delete profile" class="btn btn-outline-light text-center mb-3">
-                </form>
+                <div>
+                    {{#if (isOwner event.owner._id user._id)}}
+                    <form action="/event/{{event.id}}/delete" method="POST" style="display: inline">
+                        <input type="submit" value="Delete Event" class="btn btn-outline-light text-center mb-3">
+                    </form>
+                    <a href="/event/{{event.id}}/edit" class="btn btn-outline-light text-center mb-3">Edit Event</a>
+                    {{/if}}
+                </div>
 
             </div>
         </div>
@@ -28,17 +32,13 @@
 <hr>
 <h4 class="text-center text-secondary text-uppercase">Participants</h4>
 <hr>
-<div id="eventstable2" class="container d-flex">
-    {{#each event.participants}}
-
-
-    <img src="{{this.image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle d-block" />
-    <div class="ms-3">
-        <h4 class="fw-bold"><a id="eventName" href="/event/{{_id}}/details">{{this.username}}</a></h4>
+<div class="container mt-3">
+    <div class="d-flex gap-3 flex-wrap">
+        {{#each event.participants}}
+        <div class="mr-2"><img src="{{this.image}}" alt="" style="width: 70 px; height: 70px"
+                class="rounded-circle d-block" /></div>
+        {{/each}}
     </div>
-
-
-    {{/each}}
 </div>
 
 

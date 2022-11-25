@@ -12,55 +12,36 @@
             <thead class="bg-light">
                 <tr id="tableEvent">
                     <th>Event Name</th>
-                    <th>Addres</th>
+                    <th>Address</th>
                     <th>Date</th>
                     <th>Shelter</th>
-                    <th>confirm assistance </th>
-                    {{#if isShelter}}
-                    <th>Edit event </th>
-                    {{/if}}
-                    {{#if isAdmin}}
-                    <th>Edit event </th>
-                    {{/if}}
+                    <th>Confirm Assistance</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each foundEvents}}
                 <tr>
                     <td>
-                        <div id="eventstable" lass="d-flex align-items-center">
-                            <img src="{{image}}" alt="" style="width: 70 px; height: 70px" class="rounded-circle" />
-                            <div class="ms-3">
+                        <div id="eventstable">
+                            <div class="text-center">
                                 <h4 class="fw-bold"><a id="eventName" href="/event/{{_id}}/details">{{title}}</a></h4>
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <p>{{address}}</p>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <p class="fw-normal">{{date}}</p>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <p>{{owner.username}}</p>
                     </td>
-                    <td class="text-center">
+                    <td class="text-center d-flex justify-content-center align-middle">
                         <form method="post" action="/event/{{_id}}/join" <p class="text-center"><button type="submit"
                                 class="btn btn-outline-light text-center mb-3">Join</button></p>
                         </form>
                     </td>
-
-                    <td>
-                        {{#if isAdmin}}
-                        <a href="/event/{{_id}}/edit" class="btn btn-outline-light text-center mb-3">Edit</a>
-                        {{/if}}
-                    </td>
-                    <td>
-                        {{#if isAdmin}}
-                        <a href="/event/{{_id}}/edit" class="btn btn-outline-light text-center mb-3">Edit</a>
-                        {{/if}}
-                    </td>
-
                 </tr>
                 {{/each}}
             </tbody>
