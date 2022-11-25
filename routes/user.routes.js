@@ -49,7 +49,7 @@ router.get('/:user_id/profile', (req, res) => {
         .then(foundUser => {
             res.render('users/profile-user', {
                 foundUser,
-                isShelter: req.session.currentUser.role === 'SHELTER',
+                isShelter: foundUser.role === 'SHELTER',
                 isOwner: req.session.currentUser._id === user_id,
             })
         })
